@@ -15,6 +15,7 @@ export class TaskService {
   }
 
   addTask(task: Task) {
+    this.tasks.push(task)
     let tasks: Task[] = [];
     if (localStorage.getItem('tasks') === null) {
       tasks.push(task);
@@ -44,8 +45,13 @@ export class TaskService {
   }
   deleteTask(task: Task) {
     for (let i = 0; i < this.tasks.length; i++){
-      if (task == this.tasks[i])
+      if (task == this.tasks[i]) {
         this.tasks.splice(i, 1)
+        localStorage.setItem('tasks', JSON.stringify(this.tasks))
+      }
+        
+      
+      
     }
   }
 
